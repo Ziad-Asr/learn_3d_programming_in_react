@@ -14,7 +14,8 @@
 
 -----------------------------------------------------
 
-- Camera types => ( perspective camera )
+Camera types :=> ( perspective camera )
+#############
 
 1- perspective camera => ( field of view (FOV) - aspect ratio (w/h) - near - far )
 
@@ -39,6 +40,9 @@
 
 -----------------------------------------------------
 
+Object3D :-
+###########
+
 - All some of objects (mesh, camera) {not not renderer} in this library inherits (oop) thier propertis from (Object3D) object, means that these objects have access to it's properties and methods.
 - ( Object3D ) properties => ( position - scale - rotation - ... )
 * Rotaion (Object3D property) => 1) {Imagine the stick inside the cube to imagine the rotaion (video 3.2 - min 10)}
@@ -47,8 +51,10 @@
 
 -------------------------------------------------------
 
-// Group
-// (It is like a box for meshes that i can controll all of it's meshes at the same time from positionning too rotation to anything else)
+Group :-
+########
+
+(It is like a box for meshes that i can controll all of it's meshes at the same time from positionning too rotation to anything else)
 const group = new THREE.Scene();
 group.add(mesh, mesh2)
 scene.add(group)
@@ -57,3 +63,67 @@ group.position.x = 1;
 // AxesHelper
 const axesHelper = new THREE.AxesHelper();
 scene.add(axesHelper)
+
+-------------------------------------------------------
+
+Animation (Not the best solution) :-
+####################################
+
+const animate = () => {
+  mesh.rotation.x += 0.01;
+  renderer.render(scene, camera); // Draw what inside the camera (the scene captured)
+  window.requestAnimationFrame(animate);
+};
+
+// That based on frams per second (FPS)
+// Display the animate function on each frame
+// There are different fps for each device (60frams/sec, 120fram/sec, ...)
+// I should not depend on the fps of each device, I should choose like a statis variable for all devices
+// So the best solution is to use the ((( clock class ))) in three.js library.
+  
+
+-------------------------------------------------------
+
+// ######################
+// ### Good animation ###
+// ######################
+
+// clock class
+const clock = new THREE.Clock();
+
+// Animations
+const animate = () => {
+  // Elapsed time => The number of seconds past since a user entered the websire
+  const elapsedtime = clock.getElapsedTime();
+
+  // Update rotation on x axis
+  mesh.rotation.x = elapsedtime * (Math.PI * 2);
+
+  // Renderer
+  renderer.render(scene, camera); // Draw what inside the camera (the scene captured)
+
+  // RequestAnimationFrame
+  window.requestAnimationFrame(animate);
+};
+animate();
+
+-------------------------------------------------------
+
+- Each (vertix) has many attibutes {position - UV - Normal - ...}
+- segments => Controll the number of triangles forming the shape (Height segments - width segments - depth segments)
+  (Because each geometric shape has vertices and by connecting these vertices by lines for triangles and these triangles beside each others finally form the shape)
+
+- BufferGeometry => Is lighter on GPU (Has fewer attributes)
+-------------------------------------------------------
+
+- Texture => It's like a wrapper surrounding the mesh to give it a shape
+             (Sphere + texture of basket ball (like a paper printed on it the basket ball skin) => Basketball)
+
+- Texture type => }
+                    Color texture (only a color) ,
+                    Displacement texture (the vertices of the shape move according to the color of the texture)
+                                         (Like the mountains on the each mesh , they are going up on 3d images)
+                    Normal texture (Same as color but needs lights)
+                    bump texture (reflict light in different proportions, the light parts reflicts light more than the drker parts)
+                  }
+-------------------------------------------------------
