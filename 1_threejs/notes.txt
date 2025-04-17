@@ -1,0 +1,39 @@
+- THREE => Has 4 main elements ( Scene - Objects (mech) - Camera - Renderer )
+
+-----------------------------------------------------
+
+- I am in a room taking a picture of my bed (known that there are other objects in my room but they are not in the fram of the camera).
+  {
+    1) *** Scene => The place where the action happens ( Bedroom )
+    2) Objects => Bed - All other objects in the room (not in the picture)
+    3) Camera => My camera
+    4) *** Renderer => Is the process of taking the picture and displaying it on the ( Canvas )
+  }
+
+*** The objects in the room but not in the camera vesion are also in the scene
+
+-----------------------------------------------------
+
+- Camera types => ( perspective camera )
+
+1- perspective camera => ( field of view (FOV) - aspect ratio (w/h) - near - far )
+
+                          1) field of view (FOV) => The angle of the camera (opens with 60 degrees)
+                          2) aspect ratio (w/h) => This camera view sees a plane that has a width and height, 
+                                                   and this is the ratio between width and heght.
+                          3) Near => The beginning of the vesion ramge
+                          4) far => The end of the vision rang
+
+                          (If I want to see any mesh in the picture it must be between the beginning and ending og vission {near - far} )
+                           *** (FOV increase => Far decrease , and vice versa) {When i am trying to see fav thing I close my eyes alittle}
+                           *** (لما بصغر الزاوية بشوف مكونات اكتر بس في نطاق قليل من الصورة عشان بيبقي في مشاحة كبيرة انا شايفها, بس لو صغرت الزاوية هشوف مكونات اقل بس هتبقي واخدة مساحة كبير من الصورة اي نطاق اكبر من الصورة)
+                           - (Distoryion => Means that when I zoom in the objects in the middle of the fram seems to be expanded and the other objects seems the same)
+                           - ( near (default = 1) - far (default = 2000) )
+
+
+- When I make the camera for the first time it will be in the center of the scene, 
+  and the same for the object, 
+  then the camera will be inside the object so I can't see it, 
+  so I should like move the camera on any axis to see objects in the center well.
+{{{ Solution => camera.position.z = 3 }}}
+-----------------------------------------------------
