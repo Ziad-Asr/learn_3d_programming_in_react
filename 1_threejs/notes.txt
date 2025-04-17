@@ -36,4 +36,24 @@
   then the camera will be inside the object so I can't see it, 
   so I should like move the camera on any axis to see objects in the center well.
 {{{ Solution => camera.position.z = 3 }}}
+
 -----------------------------------------------------
+
+- All some of objects (mesh, camera) {not not renderer} in this library inherits (oop) thier propertis from (Object3D) object, means that these objects have access to it's properties and methods.
+- ( Object3D ) properties => ( position - scale - rotation - ... )
+* Rotaion (Object3D property) => 1) {Imagine the stick inside the cube to imagine the rotaion (video 3.2 - min 10)}
+                                 2) -ve => clockwise , +v => Anticlockwise
+                                 3) in (Euiler form) => ( 1.57 = 90 deg = 0.5 * Math.PI , 3.14 = 180 deg = Math.PI , 4.71 = 270 deg = 1.5 * Math.PI, 6.28 = 360 deg = 2 * Math.PI )
+
+-------------------------------------------------------
+
+// Group
+// (It is like a box for meshes that i can controll all of it's meshes at the same time from positionning too rotation to anything else)
+const group = new THREE.Scene();
+group.add(mesh, mesh2)
+scene.add(group)
+group.position.x = 1;
+
+// AxesHelper
+const axesHelper = new THREE.AxesHelper();
+scene.add(axesHelper)

@@ -14,6 +14,22 @@ const geometry = new THREE.BoxGeometry(1, 1, 1);
 const material = new THREE.MeshBasicMaterial({ color: "purple" });
 const mesh = new THREE.Mesh(geometry, material);
 
+// Object3D property (position)
+mesh.position.y = -0.5;
+mesh.position.x = 0.5;
+
+// Object3D property (scale) { expanding - shrinking }
+mesh.scale.x = 2;
+mesh.scale.y = 1; // Default
+
+// Object3D property (rotation)
+// {Imagine the stick inside the cube to imagine the rotaion (video 3.2 - min 10)}
+// -ve => clockwise , +v => Anticlockwise
+// In (Euiler form) => ( 1.57 = 90 deg = 0.5 * Math.PI , 3.14 = 180 deg = Math.PI , 4.71 = 270 deg = 1.5 * Math.PI, 6.28 = 360 deg = 2 * Math.PI )
+mesh.rotateX(0.3 * Math.PI);
+mesh.rotateY(-0.5 * Math.PI);
+mesh.rotateZ(Math.PI);
+
 // Adding the mesh to the scene
 scene.add(mesh);
 
@@ -36,7 +52,7 @@ const camera = new THREE.PerspectiveCamera(75, aspect.width / aspect.height);
 // ( I could also change the postion of the object not the camera if I want )
 camera.position.z = 3;
 camera.position.x = 1;
-camera.position.y = 1;
+camera.position.y = 0.5;
 
 // Adding the camera to the scene
 scene.add(camera);
@@ -44,7 +60,7 @@ scene.add(camera);
 // -----------------------------------------------------
 // -----------------------------------------------------
 
-// Renderer
+// 4-Renderer
 const canvas = document.querySelector(".draw"); // Selecting the canvas element
 const renderer = new THREE.WebGLRenderer({ canvas: canvas }); // Adding the WebGLRenderer
 
