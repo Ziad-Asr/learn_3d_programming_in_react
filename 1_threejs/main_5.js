@@ -43,10 +43,12 @@ loadingManager.onError = () => {
 
 // TextureLoader
 const texture = new THREE.TextureLoader(loadingManager).load(
-  "/1_threejs/public/color.jpg"
+  "/public/color.jpg"
 );
 
 const material = new THREE.MeshBasicMaterial({ map: texture });
+
+material.side = THREE.DoubleSide;
 
 // #######################################################################
 // #######################################################################

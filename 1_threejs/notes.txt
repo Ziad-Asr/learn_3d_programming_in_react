@@ -113,17 +113,43 @@ animate();
 - segments => Controll the number of triangles forming the shape (Height segments - width segments - depth segments)
   (Because each geometric shape has vertices and by connecting these vertices by lines for triangles and these triangles beside each others finally form the shape)
 
+- UV Attribute => Explain how the texture will look like on the geometry
+                  (video 7.6 , min 10)
+
 - BufferGeometry => Is lighter on GPU (Has fewer attributes)
 -------------------------------------------------------
 
 - Texture => It's like a wrapper surrounding the mesh to give it a shape
              (Sphere + texture of basket ball (like a paper printed on it the basket ball skin) => Basketball)
 
-- Texture type => }
+- Texture type => {
                     Color texture (only a color) ,
                     Displacement texture (the vertices of the shape move according to the color of the texture)
                                          (Like the mountains on the each mesh , they are going up on 3d images)
                     Normal texture (Same as color but needs lights)
                     bump texture (reflict light in different proportions, the light parts reflicts light more than the drker parts)
                   }
+
+-------------------------------------------------------
+
+- Mesh types :-
+---------------
+1) MeshBasicMaterial => Do not need light to see it.
+2) MeshDepthMaterial => The mesh will be gray, as the mesh get closer to the camera as it gets more white, as it get far from the camera as black it get.
+3) MeshNormalMaterial => Color the outside surface of the mesh based on the outside surface near to the lighting, and the surface not infront of the camera be black until the lightinh came to it to show it's color.
+4) MeshMatcapAterial => Do not nedd light, it Show the gradient of a certain color on the whole mesh based on it's normal distribution of the mesh, and the color based on the color that the light is pointing on.
+...   
+
+-------------------------------------------------------
+
+- PointsMaterial => Converts the mesh into particls
+                    It's class => ( Points ) 
+                    *** A square will be drawn on each vertix of the shape. *** These are the particls appear.
+
+- The (snow effect) is making particlas of a square shape and the color them and then add a texture to these particles and the last animate them all.
+  
+-------------------------------------------------------
+-------------------------------------------------------
+-------------------------------------------------------
+-------------------------------------------------------
 -------------------------------------------------------
