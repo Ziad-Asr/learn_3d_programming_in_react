@@ -6,6 +6,10 @@ import Scene from "./Scene";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Canvas
+    gl={{
+      antialias: true,
+      alpha: true,
+    }}
     camera={{
       fov: 45,
       near: 0.1,
@@ -13,6 +17,9 @@ root.render(
       position: [2, 2, 5],
     }}
   >
+    <axesHelper args={[2]} />
+    <gridHelper args={[20, 20, "red", "blue"]} />
+
     <Scene />
   </Canvas>
 );
