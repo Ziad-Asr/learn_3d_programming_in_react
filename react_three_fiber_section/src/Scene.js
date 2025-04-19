@@ -1,43 +1,72 @@
-import { OrbitControls, useAnimations, useGLTF } from "@react-three/drei";
-import { Suspense, useEffect } from "react";
+import { OrbitControls, Wireframe } from "@react-three/drei";
+import { click } from "@testing-library/user-event/dist/click";
+import { button, useControls } from "leva";
 
-// ########################
-// ### Model animations ###
-// ########################
+// ##################
+// ### Debuggging ###
+// ##################
 
-const Model = () => {
-  const model = useGLTF("/model/dog.glb");
-
-  // Animations
-  const animations = useAnimations(model.animations, model.scene);
-
-  useEffect(() => {
-    // Get these animations from the (animations array in animations variable)
-
-    // animations.actions.Writing.play();
-    // animations.actions.Idle.play();
-    animations.actions.Embarrassed.play();
-    // ...
-  }, [animations]);
-
-  return <primitive object={model.scene} position-y={-0.4} />;
-};
+// npm i leva
 
 const Scene = () => {
+  const cubeLevaControls = useControls("cube", {
+    position: {
+      value: {
+        x: 0,
+        y: 0,
+        z: 0,
+      },
+      min: -10,
+      max: 10,
+      step: 0.01,
+    },
+    color: "#ffffff",
+    scale: { options: [1, 2, 3] },
+    Wireframe: false,
+    click: button(() => {
+      console.log("Clicked!");
+    }),
+  });
+
+  // There is no sphere here, but that is for showing only.
+  const sphereLevaControls = useControls("sphere", {
+    position: {
+      value: {
+        x: 0,
+        y: 0,
+        z: 0,
+      },
+      min: -10,
+      max: 10,
+      step: 0.01,
+    },
+    color: "#ffffff",
+    scale: { options: [1, 2, 3] },
+    Wireframe: false,
+    click: button(() => {
+      console.log("Clicked!");
+    }),
+  });
+
   return (
     <>
       <ambientLight intensity={2} />
+      <directionalLight position={[0, 2, 4]} />
 
-      <Suspense
-        fallback={
-          <mesh scale={1}>
-            <boxGeometry />
-            <meshBasicMaterial wireframe />
-          </mesh>
-        }
+      <mesh
+        position={[
+          cubeLevaControls.position.x,
+          cubeLevaControls.position.y,
+          cubeLevaControls.position.z,
+        ]}
+        scale={cubeLevaControls.scale}
       >
-        <Model />
-      </Suspense>
+        <boxGeometry />
+        <meshStandardMaterial
+          color={cubeLevaControls.color}
+          wireframe={cubeLevaControls.Wireframe}
+        />
+      </mesh>
 
       <OrbitControls />
     </>
