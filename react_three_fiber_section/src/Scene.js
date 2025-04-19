@@ -1,5 +1,4 @@
-import { OrbitControls, Wireframe } from "@react-three/drei";
-import { click } from "@testing-library/user-event/dist/click";
+import { OrbitControls } from "@react-three/drei";
 import { button, useControls } from "leva";
 
 // ##################
